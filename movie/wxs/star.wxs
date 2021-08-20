@@ -1,0 +1,16 @@
+function formatRate(v) {
+  //v代表分数，将分数取整后再/2，例如8.4分取整后是8/2=4 就亮4颗星星
+          var lightStar = parseInt(v) / 2;
+          var star = [];
+          for (var i = 1; i <= 5; i++) {
+              if (i <= lightStar) {
+                  star.push(1);
+              } else {
+                  star.push(0);
+              }
+          }
+          return star;
+      }
+      module.exports = {
+          formatRate: formatRate
+      }

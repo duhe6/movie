@@ -1,0 +1,25 @@
+/* pages/more-movie/more-movie.wxss */
+@import '../../templates/movie-template/movie-template.wxss';
+
+/* 列表 */
+.movie_scroll {
+  position: fixed;
+  top: 100rpx;
+}
+.movie_list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 30rpx;
+}
+
+.movie_item {
+  width: 200rpx;
+  margin: 20rpx 0 0 37.5rpx;
+}
+.movie_item .movie_img {
+  width: 200rpx;
+}
+image {
+  width: 100%;
+  height: 100%;
+}

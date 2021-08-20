@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<view class="container">
+    <!--这里是搜索框，搜索框不放到首页里面，单独放置在搜索页面，
+      所以这里做一个点击跳转到搜索页面-->
+      <import src="../../templates/movie-template/movie-template.wxml" />
+  <navigator class="search" url="/pages/search/search">
+    <icon type="search" size="15"></icon>搜索
+  </navigator>
+  <view class="banner_box">
+    <swiper class="banner" indicator-dots="true"
+     indicator-color="rbag(255,255,255,0.5)" 
+     indicator-active-color="#42bd59" autoplay="true"
+      circular="true">
+      <block wx:for="{{bannerData}}" wx:key="index">
+        <swiper-item>
+          <navigator>
+            <image src="{{item.banner_img}}"></image>
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- <template is="movie_subject" data="{{movieList}}"></template> -->
+  <block wx:for="{{subJectData}}" wx:key="index" wx:for-item="subItem">
+   <template is="movie_subject" data="{{subItem}}"></template>
+  </block>
+</view>
+<!-- <button bindtap="getBannerData">数据</button> -->
+<view class="subject">
+  <view class="subject_top">
+    <text class="title">最近上映</text>
+    <navigator class="lookMore" 
+    url="/pages/more-movie/more-movie?title={{subItem.subjectTitle}}">
+    查看更多 ></navigator>
+  </view>
+  <scroll-view class="movieList" scroll-x="true">
+    <block wx:for="{{moreData}}" wx:key="index">
+      <navigator class="movie_item">
+        <view class="movie_img">
+          <image src="{{item.movie_img}}"></image>
+        </view>
+        <view class="name">{{item.name}}</view>
+        <view class="star_box">
+          <view class="stars">
+            <view class="iconfont icon-xingxing light"></view>
+            <view class="iconfont icon-xingxing light"></view>
+            <view class="iconfont icon-xingxing light"></view>
+            <view class="iconfont icon-xingxing light"></view>
+            <view class="iconfont icon-xingxing"></view>
+          </view>
+          <text class="star_score">{{item.rate}}</text>
+        </view>
+      </navigator>
+    </block>
+  </scroll-view>
+</view>

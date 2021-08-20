@@ -1,0 +1,40 @@
+<template name="movie_subject">
+  <view class="subject">
+    <view class="subject_top">
+      <text class="title">最近上映</text>
+      <text class="title">{{subItem.subjectTitle}}</text>
+      <navigator class="lookMore" 
+      url="/pages/more-movie/more-movie?title={{subItem.subjectTitle}}">查看更多 >
+    </navigator>
+    </view>
+    <scroll-view class="movieList" scroll-x="true">
+      <!-- <block wx:for="{{movieList}}" wx:key="index"> -->
+        <block wx:for="{{subItem.movieList}}" wx:key="index">
+          <!--这里需要注意：由于{{}}中不能使用item.xxx去获取数据，所以这里使用ES6语法将item对象中的key值展开，下面星星模板中使用的时候就可以直接使用key来获取数据-->
+        <template is="movieItem" data="{{...item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+</template>
+
+<template name="movieItem">
+  <navigator class="movie_item" url="/pages/movie-detail/movie-detail">
+    <view class="movie_img">
+      <image src="{{movie_img}}"></image>
+    </view>
+    <view class="name">{{name}}</view>
+    <template is="star" data="{{rate}}"></template>
+  </navigator>
+</template>
+<!--引入封装的star.wxs-->
+<wxs src="../../wxs/star.wxs" module="starUtil" />
+<template name="star">
+  <view class="star_box">
+    <view class="stars">
+      <block wx:for="{{starUtil.formatRate(rate)}}" wx:key="index">
+        <view class="iconfont icon-xingxing {{item==1?'light':''}}"></view>
+      </block>
+    </view>
+    <text class="star_score">{{rate}}</text>
+  </view>
+</template>
